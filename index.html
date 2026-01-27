@@ -280,10 +280,10 @@
             color: #2d3748;
         }
 
-        /* Gallery */
+        /* Gallery - 9:16 Vertical Grid */
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: 1fr;
             gap: 1rem;
         }
 
@@ -293,18 +293,39 @@
             border-radius: 8px;
             cursor: pointer;
             background: #e2e8f0;
-            aspect-ratio: 4/3;
+            aspect-ratio: 9/16;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
         }
 
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s;
+            object-position: center;
+            transition: transform 0.4s ease;
         }
 
         .gallery-item:hover img {
             transform: scale(1.05);
+        }
+
+        /* Gallery responsive breakpoints */
+        @media (min-width: 480px) {
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 992px) {
+            .gallery {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
 
         /* Features Grid */
@@ -544,20 +565,7 @@
         <!-- Gallery Section -->
         <section class="section">
             <h2 class="section-title">Galería de Fotos</h2>
-            <div class="gallery">
-                <div class="gallery-item" onclick="openLightbox('image1.jpg')">
-                    <img src="placeholder-living.jpg" alt="Living comedor" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\'%3E%3Crect fill=\'%23e2e8f0\' width=\'400\' height=\'300\'/%3E%3Ctext fill=\'%23718096\' font-family=\'Arial\' font-size=\'20\' x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\'%3ELiving Comedor%3C/text%3E%3C/svg%3E'">
-                </div>
-                <div class="gallery-item" onclick="openLightbox('image2.jpg')">
-                    <img src="placeholder-kitchen.jpg" alt="Cocina" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\'%3E%3Crect fill=\'%23e2e8f0\' width=\'400\' height=\'300\'/%3E%3Ctext fill=\'%23718096\' font-family=\'Arial\' font-size=\'20\' x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\'%3ECocina%3C/text%3E%3C/svg%3E'">
-                </div>
-                <div class="gallery-item" onclick="openLightbox('image3.jpg')">
-                    <img src="placeholder-bedroom.jpg" alt="Dormitorio" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\'%3E%3Crect fill=\'%23e2e8f0\' width=\'400\' height=\'300\'/%3E%3Ctext fill=\'%23718096\' font-family=\'Arial\' font-size=\'20\' x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\'%3EDormitorio%3C/text%3E%3C/svg%3E'">
-                </div>
-                <div class="gallery-item" onclick="openLightbox('image4.jpg')">
-                    <img src="placeholder-balcony.jpg" alt="Balcón" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\'%3E%3Crect fill=\'%23e2e8f0\' width=\'400\' height=\'300\'/%3E%3Ctext fill=\'%23718096\' font-family=\'Arial\' font-size=\'20\' x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\'%3EBalcón%3C/text%3E%3C/svg%3E'">
-                </div>
-            </div>
+            <div class="gallery" id="photo-gallery"></div>
         </section>
 
         <!-- Features Section -->
@@ -635,10 +643,19 @@
     </div>
 
     <script>
+        // Image array for gallery and carousel
+        const propertyImages = [
+            'image1.jpeg', 'image2.jpeg', 'image3.jpeg', 'image4.jpeg',
+            'image5.jpeg', 'image6.jpeg', 'image7.jpeg', 'image8.jpeg',
+            'image9.jpeg', 'image10.jpeg', 'image11.jpeg', 'image12.jpeg',
+            'image13.jpeg', 'image14.jpeg', 'image15.jpeg', 'image16.jpeg',
+            'image17.jpeg', 'image18.jpeg'
+        ];
+
         // Carousel functionality
         const totalSlides = 18;
         let currentIndex = 0;
-        let autoRotateInterval;
+        let autoRotateInterval = null;
         let isPaused = false;
 
         // Initialize carousel
@@ -650,6 +667,8 @@
                 dot.onclick = () => goToSlide(i);
                 dotsContainer.appendChild(dot);
             }
+
+            // Start auto-rotate immediately
             startAutoRotate();
 
             // Pause on hover
@@ -682,6 +701,7 @@
 
         function changeSlide(direction) {
             goToSlide(currentIndex + direction);
+            // Reset auto-rotate timer when manually navigating
             if (!isPaused) {
                 stopAutoRotate();
                 startAutoRotate();
@@ -692,27 +712,58 @@
             stopAutoRotate();
             autoRotateInterval = setInterval(() => {
                 goToSlide(currentIndex + 1);
-            }, 4000);
+            }, 3000); // 3 seconds
         }
 
         function stopAutoRotate() {
             if (autoRotateInterval) {
                 clearInterval(autoRotateInterval);
+                autoRotateInterval = null;
             }
         }
 
+        // Initialize gallery with all 18 images
+        function initGallery() {
+            const gallery = document.getElementById('photo-gallery');
+            propertyImages.forEach((image, index) => {
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+                item.onclick = () => openLightbox(image);
+
+                const img = document.createElement('img');
+                img.src = image;
+                img.alt = `Foto ${index + 1} del departamento`;
+                img.loading = 'lazy';
+
+                item.appendChild(img);
+                gallery.appendChild(item);
+            });
+        }
+
         // Initialize when DOM is ready
-        document.addEventListener('DOMContentLoaded', initCarousel);
+        document.addEventListener('DOMContentLoaded', () => {
+            initCarousel();
+            initGallery();
+        });
 
         // Lightbox functionality
         function openLightbox(src) {
             document.getElementById('lightbox').classList.add('active');
             document.getElementById('lightbox-img').src = src;
+            document.body.style.overflow = 'hidden';
         }
 
         function closeLightbox() {
             document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
         }
+
+        // Close lightbox with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
 
         function handleSubmit(event) {
             event.preventDefault();
