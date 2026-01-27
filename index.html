@@ -57,7 +57,7 @@
             background: #1a365d;
         }
 
-        /* Hero Section with Video */
+        /* Hero Section with Carousel */
         .hero {
             position: relative;
             height: 80vh;
@@ -69,28 +69,34 @@
             overflow: hidden;
         }
 
-        .hero-video {
+        .carousel-container {
             position: absolute;
             top: 0;
             left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        .carousel-slide img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             object-position: center center;
-            z-index: 0;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('balcony.jpg');
-            background-size: cover;
-            background-position: center;
-            z-index: -1;
         }
 
         .hero-overlay {
@@ -99,7 +105,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.4);
             z-index: 1;
         }
 
@@ -119,9 +125,103 @@
             margin-bottom: 2rem;
         }
 
+        /* Carousel Navigation Arrows */
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 3;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-arrow:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-arrow.prev {
+            left: 1rem;
+        }
+
+        .carousel-arrow.next {
+            right: 1rem;
+        }
+
+        /* Carousel Dots */
+        .carousel-dots {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 90%;
+        }
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .carousel-dot:hover {
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .carousel-dot.active {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        /* Image Counter */
+        .carousel-counter {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            z-index: 3;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
         @media (min-width: 768px) {
             .hero {
                 height: 500px;
+            }
+
+            .carousel-arrow {
+                width: 60px;
+                height: 60px;
+                font-size: 2.5rem;
+            }
+
+            .carousel-arrow.prev {
+                left: 2rem;
+            }
+
+            .carousel-arrow.next {
+                right: 2rem;
             }
         }
 
@@ -379,12 +479,33 @@
         </div>
     </header>
 
-    <!-- Hero Section with Video -->
-    <section class="hero">
-        <video class="hero-video" autoplay loop muted playsinline poster="balcony.jpg">
-            <source src="property-video.mp4" type="video/mp4">
-        </video>
+    <!-- Hero Section with Carousel -->
+    <section class="hero" id="hero-carousel">
+        <div class="carousel-container">
+            <div class="carousel-slide active"><img src="image1.jpeg" alt="Imagen 1"></div>
+            <div class="carousel-slide"><img src="image2.jpeg" alt="Imagen 2"></div>
+            <div class="carousel-slide"><img src="image3.jpeg" alt="Imagen 3"></div>
+            <div class="carousel-slide"><img src="image4.jpeg" alt="Imagen 4"></div>
+            <div class="carousel-slide"><img src="image5.jpeg" alt="Imagen 5"></div>
+            <div class="carousel-slide"><img src="image6.jpeg" alt="Imagen 6"></div>
+            <div class="carousel-slide"><img src="image7.jpeg" alt="Imagen 7"></div>
+            <div class="carousel-slide"><img src="image8.jpeg" alt="Imagen 8"></div>
+            <div class="carousel-slide"><img src="image9.jpeg" alt="Imagen 9"></div>
+            <div class="carousel-slide"><img src="image10.jpeg" alt="Imagen 10"></div>
+            <div class="carousel-slide"><img src="image11.jpeg" alt="Imagen 11"></div>
+            <div class="carousel-slide"><img src="image12.jpeg" alt="Imagen 12"></div>
+            <div class="carousel-slide"><img src="image13.jpeg" alt="Imagen 13"></div>
+            <div class="carousel-slide"><img src="image14.jpeg" alt="Imagen 14"></div>
+            <div class="carousel-slide"><img src="image15.jpeg" alt="Imagen 15"></div>
+            <div class="carousel-slide"><img src="image16.jpeg" alt="Imagen 16"></div>
+            <div class="carousel-slide"><img src="image17.jpeg" alt="Imagen 17"></div>
+            <div class="carousel-slide"><img src="image18.jpeg" alt="Imagen 18"></div>
+        </div>
         <div class="hero-overlay"></div>
+        <button class="carousel-arrow prev" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="carousel-arrow next" onclick="changeSlide(1)">&#10095;</button>
+        <div class="carousel-counter"><span id="current-slide">1</span>/18</div>
+        <div class="carousel-dots" id="carousel-dots"></div>
         <div class="hero-content">
             <h1>Departamento 3 Dormitorios</h1>
             <p>Villa Ballester, San Martín • 115 m²</p>
@@ -514,6 +635,76 @@
     </div>
 
     <script>
+        // Carousel functionality
+        const totalSlides = 18;
+        let currentIndex = 0;
+        let autoRotateInterval;
+        let isPaused = false;
+
+        // Initialize carousel
+        function initCarousel() {
+            const dotsContainer = document.getElementById('carousel-dots');
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('button');
+                dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+                dot.onclick = () => goToSlide(i);
+                dotsContainer.appendChild(dot);
+            }
+            startAutoRotate();
+
+            // Pause on hover
+            const hero = document.getElementById('hero-carousel');
+            hero.addEventListener('mouseenter', () => {
+                isPaused = true;
+                stopAutoRotate();
+            });
+            hero.addEventListener('mouseleave', () => {
+                isPaused = false;
+                startAutoRotate();
+            });
+        }
+
+        function goToSlide(index) {
+            const slides = document.querySelectorAll('.carousel-slide');
+            const dots = document.querySelectorAll('.carousel-dot');
+
+            slides[currentIndex].classList.remove('active');
+            dots[currentIndex].classList.remove('active');
+
+            currentIndex = index;
+            if (currentIndex >= totalSlides) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = totalSlides - 1;
+
+            slides[currentIndex].classList.add('active');
+            dots[currentIndex].classList.add('active');
+            document.getElementById('current-slide').textContent = currentIndex + 1;
+        }
+
+        function changeSlide(direction) {
+            goToSlide(currentIndex + direction);
+            if (!isPaused) {
+                stopAutoRotate();
+                startAutoRotate();
+            }
+        }
+
+        function startAutoRotate() {
+            stopAutoRotate();
+            autoRotateInterval = setInterval(() => {
+                goToSlide(currentIndex + 1);
+            }, 4000);
+        }
+
+        function stopAutoRotate() {
+            if (autoRotateInterval) {
+                clearInterval(autoRotateInterval);
+            }
+        }
+
+        // Initialize when DOM is ready
+        document.addEventListener('DOMContentLoaded', initCarousel);
+
+        // Lightbox functionality
         function openLightbox(src) {
             document.getElementById('lightbox').classList.add('active');
             document.getElementById('lightbox-img').src = src;
