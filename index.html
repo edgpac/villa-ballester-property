@@ -306,14 +306,53 @@
             color: #2d3748;
         }
 
-        /* Gallery - 9:16 Vertical Grid */
-        .gallery {
-            display: grid;
-            grid-template-columns: 1fr;
+        /* Gallery Section Header */
+        .gallery-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .gallery-header .section-title {
+            margin-bottom: 0;
+        }
+
+        .gallery-play-pause {
+            background: rgba(44, 82, 130, 0.9);
+            color: white;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .gallery-play-pause:hover {
+            background: rgba(26, 54, 93, 1);
+            transform: scale(1.1);
+        }
+
+        /* Gallery Carousel */
+        .gallery-carousel {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-track {
+            display: flex;
             gap: 1rem;
+            transition: transform 0.5s ease-in-out;
         }
 
         .gallery-item {
+            flex: 0 0 100%;
             position: relative;
             overflow: hidden;
             border-radius: 8px;
@@ -321,12 +360,11 @@
             background: #e2e8f0;
             aspect-ratio: 9/16;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: box-shadow 0.3s;
         }
 
         .gallery-item:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
         }
 
         .gallery-item img {
@@ -341,16 +379,16 @@
             transform: scale(1.05);
         }
 
-        /* Gallery responsive breakpoints */
+        /* Gallery responsive - show multiple items */
         @media (min-width: 480px) {
-            .gallery {
-                grid-template-columns: repeat(2, 1fr);
+            .gallery-item {
+                flex: 0 0 calc(50% - 0.5rem);
             }
         }
 
         @media (min-width: 992px) {
-            .gallery {
-                grid-template-columns: repeat(3, 1fr);
+            .gallery-item {
+                flex: 0 0 calc(33.333% - 0.667rem);
             }
         }
 
@@ -593,8 +631,13 @@
     <main class="container">
         <!-- Gallery Section -->
         <section class="section">
-            <h2 class="section-title">Galería de Fotos</h2>
-            <div class="gallery" id="photo-gallery"></div>
+            <div class="gallery-header">
+                <h2 class="section-title">Galería de Fotos</h2>
+                <button class="gallery-play-pause" id="gallery-play-pause-btn" onclick="toggleGalleryPlayPause()">⏸️</button>
+            </div>
+            <div class="gallery-carousel">
+                <div class="gallery-track" id="gallery-track"></div>
+            </div>
         </section>
 
         <!-- Features Section -->
@@ -756,9 +799,22 @@
             }
         }
 
-        // Initialize gallery with all 18 images
+        // Gallery Carousel functionality
+        let galleryIndex = 0;
+        let galleryInterval = null;
+        let galleryPlaying = true;
+        let visibleItems = 1;
+
+        function getVisibleItems() {
+            if (window.innerWidth >= 992) return 3;
+            if (window.innerWidth >= 480) return 2;
+            return 1;
+        }
+
         function initGallery() {
-            const gallery = document.getElementById('photo-gallery');
+            const track = document.getElementById('gallery-track');
+
+            // Create gallery items
             propertyImages.forEach((image, index) => {
                 const item = document.createElement('div');
                 item.className = 'gallery-item';
@@ -770,8 +826,75 @@
                 img.loading = 'lazy';
 
                 item.appendChild(img);
-                gallery.appendChild(item);
+                track.appendChild(item);
             });
+
+            // Set initial visible items count
+            visibleItems = getVisibleItems();
+
+            // Start auto-rotate
+            startGalleryRotate();
+
+            // Update on resize
+            window.addEventListener('resize', () => {
+                const newVisibleItems = getVisibleItems();
+                if (newVisibleItems !== visibleItems) {
+                    visibleItems = newVisibleItems;
+                    // Reset to valid index if needed
+                    if (galleryIndex > propertyImages.length - visibleItems) {
+                        galleryIndex = 0;
+                    }
+                    updateGalleryPosition();
+                }
+            });
+        }
+
+        function updateGalleryPosition() {
+            const track = document.getElementById('gallery-track');
+            const itemWidth = 100 / visibleItems;
+            const gapAdjust = visibleItems > 1 ? (1 / visibleItems) : 0;
+            const offset = galleryIndex * (itemWidth + gapAdjust);
+            track.style.transform = `translateX(-${offset}%)`;
+        }
+
+        function advanceGallery() {
+            galleryIndex++;
+            if (galleryIndex > propertyImages.length - visibleItems) {
+                galleryIndex = 0;
+            }
+            updateGalleryPosition();
+        }
+
+        function startGalleryRotate() {
+            stopGalleryRotate();
+            galleryInterval = setInterval(advanceGallery, 3000); // 3 seconds
+            galleryPlaying = true;
+            updateGalleryPlayPauseButton();
+        }
+
+        function stopGalleryRotate() {
+            if (galleryInterval) {
+                clearInterval(galleryInterval);
+                galleryInterval = null;
+            }
+            galleryPlaying = false;
+            updateGalleryPlayPauseButton();
+        }
+
+        function toggleGalleryPlayPause() {
+            if (galleryPlaying) {
+                stopGalleryRotate();
+            } else {
+                startGalleryRotate();
+            }
+        }
+
+        function updateGalleryPlayPauseButton() {
+            const btn = document.getElementById('gallery-play-pause-btn');
+            if (btn) {
+                btn.textContent = galleryPlaying ? '⏸️' : '▶️';
+                btn.setAttribute('aria-label', galleryPlaying ? 'Pausar galería' : 'Reproducir galería');
+            }
         }
 
         // Initialize when DOM is ready
