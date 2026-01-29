@@ -467,6 +467,17 @@
             transition: transform 0.5s ease-in-out;
         }
 
+        @media (max-width: 640px) {
+            .gallery-track {
+                gap: 0;
+            }
+
+            .gallery-item {
+                flex: 0 0 100%;
+                border-radius: var(--radius-md);
+            }
+        }
+
         .gallery-item {
             flex: 0 0 100%;
             position: relative;
@@ -497,7 +508,7 @@
             transform: scale(1.05);
         }
 
-        @media (min-width: 480px) {
+        @media (min-width: 641px) {
             .gallery-item {
                 flex: 0 0 calc(50% - 0.75rem);
             }
@@ -506,6 +517,58 @@
         @media (min-width: 992px) {
             .gallery-item {
                 flex: 0 0 calc(33.333% - 1rem);
+            }
+        }
+
+        /* Gallery Navigation Arrows */
+        .gallery-nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            box-shadow: var(--shadow-md);
+            transition: all 300ms ease-in-out;
+        }
+
+        .gallery-nav-arrow:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .gallery-nav-arrow.prev {
+            left: 0.75rem;
+        }
+
+        .gallery-nav-arrow.next {
+            right: 0.75rem;
+        }
+
+        .gallery-nav-arrow svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--color-primary);
+            stroke-width: 2.5;
+            fill: none;
+        }
+
+        /* Hide arrows on larger screens, show on mobile/tablet */
+        @media (min-width: 992px) {
+            .gallery-nav-arrow {
+                opacity: 0;
+            }
+
+            .gallery-carousel:hover .gallery-nav-arrow {
+                opacity: 1;
             }
         }
 
@@ -919,7 +982,13 @@
                 <button class="gallery-play-pause" id="gallery-play-pause-btn" onclick="toggleGalleryPlayPause()" aria-label="Pausar galería">⏸️</button>
             </div>
             <div class="gallery-carousel">
+                <button class="gallery-nav-arrow prev" onclick="navigateGallery(-1)" aria-label="Imagen anterior">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
                 <div class="gallery-track" id="gallery-track"></div>
+                <button class="gallery-nav-arrow next" onclick="navigateGallery(1)" aria-label="Siguiente imagen">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
             </div>
             <div class="gallery-dots" id="gallery-dots"></div>
         </section>
@@ -1051,8 +1120,24 @@
 
         function getVisibleItems() {
             if (window.innerWidth >= 992) return 3;
-            if (window.innerWidth >= 480) return 2;
+            if (window.innerWidth >= 641) return 2;
             return 1;
+        }
+
+        function navigateGallery(direction) {
+            galleryIndex += direction;
+            if (galleryIndex < 0) {
+                galleryIndex = propertyImages.length - visibleItems;
+            }
+            if (galleryIndex > propertyImages.length - visibleItems) {
+                galleryIndex = 0;
+            }
+            updateGalleryPosition();
+            updateGalleryDots();
+            // Reset auto-rotate timer if playing
+            if (galleryPlaying) {
+                startGalleryRotate();
+            }
         }
 
         function initGallery() {
@@ -1132,7 +1217,9 @@
         function updateGalleryPosition() {
             const track = document.getElementById('gallery-track');
             const itemWidth = 100 / visibleItems;
-            const gapAdjust = visibleItems > 1 ? (1.5 / visibleItems) : 0;
+            // No gap adjustment on mobile (single image), use gap for tablet/desktop
+            const isMobile = window.innerWidth <= 640;
+            const gapAdjust = (visibleItems > 1 && !isMobile) ? (1.5 / visibleItems) : 0;
             const offset = galleryIndex * (itemWidth + gapAdjust);
             track.style.transform = `translateX(-${offset}%)`;
         }
