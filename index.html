@@ -956,18 +956,32 @@
     </section>
 
     <!-- Google Maps Section -->
-    <section class="map-section" id="ubicacion">
-        <h2 class="section-title">Ubicación</h2>
-        <div class="map-container">
+    <div class="location-map-section" id="ubicacion" style="padding: 4rem 1rem; background: #f8f9fb;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; text-align: center; margin-bottom: 1.5rem; color: #252f3f;">Ubicación</h2>
+
+            <p style="text-align: center; font-size: 1.125rem; color: #252f3f; margin-bottom: 2rem;">
+                📍 Vicente López y Rivadavia<br>
+                Villa Ballester, San Martín<br>
+                Buenos Aires, Argentina
+            </p>
+
             <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.0168878895846!2d-58.5555!3d-34.6037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb8a8e42c33ad%3A0x47cd1e4d6e44e2c!2sVilla%20Ballester%2C%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1706464800000!5m2!1ses!2sar"
+                src="https://www.google.com/maps?q=-34.5433,-58.5639&hl=es&z=16&output=embed"
+                width="100%"
+                height="450"
+                style="border:0; border-radius: 1rem; box-shadow: 0 4px 12px rgba(37, 47, 63, 0.08);"
                 allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-                title="Ubicación del departamento en Villa Ballester">
+                loading="lazy">
             </iframe>
+
+            <div style="text-align: center; margin-top: 1.5rem;">
+                <a href="https://www.google.com/maps/search/?api=1&query=-34.5433,-58.5639" target="_blank" style="color: #2d5a7b; font-weight: 600; text-decoration: none;">
+                    📍 Abrir en Google Maps →
+                </a>
+            </div>
         </div>
-    </section>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
