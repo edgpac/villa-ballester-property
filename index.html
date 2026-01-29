@@ -4,31 +4,107 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Departamento en Villa Ballester - 115m² | 3 Dormitorios</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
+        /* ===== CSS CUSTOM PROPERTIES ===== */
+        :root {
+            /* Colors - Deep Ocean Blue Theme */
+            --color-bg: #f8f9fb;
+            --color-primary: #2d5a7b;
+            --color-primary-hover: #1f3d54;
+            --color-accent: #f59e0b;
+            --color-text: #252f3f;
+            --color-muted: #6b7280;
+            --color-card: #ffffff;
+            --color-border: #e2e8f0;
+
+            /* Shadows */
+            --shadow-sm: 0 1px 2px rgba(37, 47, 63, 0.05);
+            --shadow-md: 0 4px 12px rgba(37, 47, 63, 0.08);
+            --shadow-lg: 0 8px 24px rgba(37, 47, 63, 0.12);
+            --shadow-hero: 0 20px 40px rgba(37, 47, 63, 0.15);
+
+            /* Typography */
+            --font-heading: 'Playfair Display', Georgia, serif;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+            /* Spacing */
+            --container-max: 1200px;
+            --section-padding: 4rem 1rem;
+            --section-padding-mobile: 3rem 1rem;
+
+            /* Border Radius */
+            --radius-sm: 0.5rem;
+            --radius-md: 0.75rem;
+            --radius-lg: 1rem;
+        }
+
+        /* ===== RESET & BASE ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #333;
+        html {
+            scroll-behavior: smooth;
         }
 
-        /* Header */
+        body {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: var(--color-bg);
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            line-height: 1.3;
+            color: var(--color-text);
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+        }
+
+        h3 {
+            font-size: 2rem;
+        }
+
+        @media (max-width: 640px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.75rem; }
+            h3 { font-size: 1.5rem; }
+        }
+
+        /* ===== HEADER ===== */
         .header {
-            background: #fff;
-            padding: 1.5rem 2rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 1.25rem 1.5rem;
+            box-shadow: var(--shadow-sm);
             position: sticky;
             top: 0;
             z-index: 100;
         }
 
         .header-content {
-            max-width: 1200px;
+            max-width: var(--container-max);
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -36,31 +112,38 @@
         }
 
         .logo {
+            font-family: var(--font-heading);
             font-size: 1.5rem;
-            font-weight: 600;
-            color: #2c5282;
+            font-weight: 700;
+            color: var(--color-primary);
+            letter-spacing: -0.5px;
         }
 
         .contact-btn {
-            background: #2c5282;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
             color: white;
             padding: 0.75rem 1.5rem;
             border: none;
-            border-radius: 4px;
+            border-radius: var(--radius-sm);
             cursor: pointer;
-            font-size: 1rem;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 600;
             text-decoration: none;
-            transition: background 0.3s;
+            box-shadow: var(--shadow-md);
+            transition: all 300ms ease-in-out;
         }
 
         .contact-btn:hover {
-            background: #1a365d;
+            transform: scale(1.05);
+            box-shadow: var(--shadow-lg);
         }
 
-        /* Hero Section with Carousel */
+        /* ===== HERO SECTION ===== */
         .hero {
             position: relative;
-            height: 80vh;
+            height: 85vh;
+            min-height: 500px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -105,24 +188,37 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4);
+            background: linear-gradient(135deg, rgba(45, 90, 123, 0.85), rgba(31, 61, 84, 0.9));
             z-index: 1;
         }
 
         .hero-content {
             z-index: 2;
             padding: 2rem;
+            max-width: 800px;
         }
 
         .hero h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
+            font-weight: 700;
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            color: white;
         }
 
         .hero p {
+            font-family: var(--font-body);
             font-size: 1.25rem;
+            font-weight: 300;
             margin-bottom: 2rem;
+            opacity: 0.95;
+            letter-spacing: 0.5px;
+        }
+
+        .hero .contact-btn {
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            box-shadow: var(--shadow-hero);
         }
 
         /* Carousel Navigation Arrows */
@@ -131,42 +227,43 @@
             top: 50%;
             transform: translateY(-50%);
             z-index: 3;
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             color: white;
-            font-size: 2rem;
-            width: 50px;
-            height: 50px;
+            font-size: 1.5rem;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             cursor: pointer;
-            transition: background 0.3s, transform 0.2s;
+            transition: all 300ms ease-in-out;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
         .carousel-arrow:hover {
-            background: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.25);
             transform: translateY(-50%) scale(1.1);
         }
 
         .carousel-arrow.prev {
-            left: 1rem;
+            left: 1.5rem;
         }
 
         .carousel-arrow.next {
-            right: 1rem;
+            right: 1.5rem;
         }
 
         /* Carousel Dots */
         .carousel-dots {
             position: absolute;
-            bottom: 1.5rem;
+            bottom: 2rem;
             left: 50%;
             transform: translateX(-50%);
             z-index: 3;
             display: flex;
-            gap: 8px;
+            gap: 10px;
             flex-wrap: wrap;
             justify-content: center;
             max-width: 90%;
@@ -179,7 +276,7 @@
             background: rgba(255, 255, 255, 0.4);
             border: none;
             cursor: pointer;
-            transition: background 0.3s, transform 0.2s;
+            transition: all 300ms ease-in-out;
         }
 
         .carousel-dot:hover {
@@ -188,130 +285,189 @@
 
         .carousel-dot.active {
             background: white;
-            transform: scale(1.2);
+            transform: scale(1.3);
         }
 
-        /* Carousel Controls (Counter + Play/Pause) */
+        /* Carousel Controls */
         .carousel-controls {
             position: absolute;
-            top: 1rem;
-            right: 1rem;
+            top: 1.5rem;
+            right: 1.5rem;
             z-index: 3;
             display: flex;
-            gap: 0.5rem;
+            gap: 0.75rem;
             align-items: center;
         }
 
         .carousel-counter {
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
             color: white;
             padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
+            border-radius: 2rem;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
             font-weight: 500;
         }
 
         .carousel-play-pause {
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
             color: white;
             border: none;
             width: 40px;
             height: 40px;
             border-radius: 50%;
             cursor: pointer;
-            font-size: 1.1rem;
+            font-size: 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.3s, transform 0.2s;
+            transition: all 300ms ease-in-out;
         }
 
         .carousel-play-pause:hover {
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.6);
             transform: scale(1.1);
         }
 
         @media (min-width: 768px) {
             .hero {
-                height: 500px;
+                height: 600px;
             }
 
             .carousel-arrow {
-                width: 60px;
-                height: 60px;
-                font-size: 2.5rem;
+                width: 56px;
+                height: 56px;
+                font-size: 1.75rem;
             }
 
             .carousel-arrow.prev {
-                left: 2rem;
+                left: 2.5rem;
             }
 
             .carousel-arrow.next {
-                right: 2rem;
+                right: 2.5rem;
             }
         }
 
-        /* Quick Info Bar */
+        @media (max-width: 640px) {
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+
+        /* ===== QUICK INFO / STATS CARDS ===== */
         .quick-info {
-            background: #f7fafc;
-            padding: 2rem;
-            border-bottom: 1px solid #e2e8f0;
+            background: var(--color-card);
+            padding: var(--section-padding);
+            margin-top: -3rem;
+            position: relative;
+            z-index: 10;
         }
 
         .quick-info-content {
-            max-width: 1200px;
+            max-width: var(--container-max);
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            text-align: center;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
         }
 
         .info-item {
-            padding: 1rem;
+            background: var(--color-card);
+            padding: 1.75rem 1.5rem;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: all 300ms ease-in-out;
+            border: 1px solid var(--color-border);
+        }
+
+        .info-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
         }
 
         .info-item .icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .info-item .value {
+            font-family: var(--font-heading);
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: 0.25rem;
         }
 
         .info-item .label {
-            font-size: 0.875rem;
-            color: #718096;
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--color-muted);
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        .info-item .value {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #2c5282;
+        @media (max-width: 1024px) {
+            .quick-info-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
-        /* Main Content */
+        @media (max-width: 640px) {
+            .quick-info {
+                padding: var(--section-padding-mobile);
+                margin-top: -2rem;
+            }
+
+            .quick-info-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== MAIN CONTENT ===== */
         .container {
-            max-width: 1200px;
+            max-width: var(--container-max);
             margin: 0 auto;
-            padding: 3rem 2rem;
+            padding: var(--section-padding);
         }
 
         .section {
-            margin-bottom: 4rem;
+            margin-bottom: 5rem;
         }
 
         .section-title {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: #2d3748;
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: var(--color-text);
         }
 
-        /* Gallery Section Header */
+        @media (max-width: 640px) {
+            .container {
+                padding: var(--section-padding-mobile);
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+        }
+
+        /* ===== GALLERY SECTION ===== */
         .gallery-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .gallery-header .section-title {
@@ -319,35 +475,35 @@
         }
 
         .gallery-play-pause {
-            background: rgba(44, 82, 130, 0.9);
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
             color: white;
             border: none;
-            width: 44px;
-            height: 44px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             cursor: pointer;
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.3s, transform 0.2s;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            transition: all 300ms ease-in-out;
+            box-shadow: var(--shadow-md);
         }
 
         .gallery-play-pause:hover {
-            background: rgba(26, 54, 93, 1);
             transform: scale(1.1);
+            box-shadow: var(--shadow-lg);
         }
 
-        /* Gallery Carousel */
         .gallery-carousel {
             position: relative;
             overflow: hidden;
+            border-radius: var(--radius-lg);
         }
 
         .gallery-track {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
             transition: transform 0.5s ease-in-out;
         }
 
@@ -355,16 +511,17 @@
             flex: 0 0 100%;
             position: relative;
             overflow: hidden;
-            border-radius: 8px;
+            border-radius: var(--radius-md);
             cursor: pointer;
-            background: #f7fafc;
+            background: var(--color-bg);
             aspect-ratio: 4/3;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: box-shadow 0.3s;
+            box-shadow: var(--shadow-md);
+            transition: all 300ms ease-in-out;
         }
 
         .gallery-item:hover {
-            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+            transform: scale(1.02);
+            box-shadow: var(--shadow-lg);
         }
 
         .gallery-item img {
@@ -373,58 +530,122 @@
             object-fit: cover;
             object-position: center center;
             display: block;
-            transition: transform 0.4s ease;
+            transition: transform 400ms ease;
         }
 
         .gallery-item:hover img {
             transform: scale(1.05);
         }
 
-        /* Gallery responsive - show multiple items */
         @media (min-width: 480px) {
             .gallery-item {
-                flex: 0 0 calc(50% - 0.5rem);
-                aspect-ratio: 4/3;
+                flex: 0 0 calc(50% - 0.75rem);
             }
         }
 
         @media (min-width: 992px) {
             .gallery-item {
-                flex: 0 0 calc(33.333% - 0.667rem);
-                aspect-ratio: 4/3;
+                flex: 0 0 calc(33.333% - 1rem);
             }
         }
 
-        /* Features Grid */
+        /* ===== FEATURES SECTION ===== */
+        .features-section {
+            background: var(--color-bg);
+            padding: var(--section-padding);
+            margin: 0 -1rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .features-container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+        }
+
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
         }
 
         .feature-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            background: var(--color-card);
+            padding: 2rem 1.5rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            transition: all 300ms ease-in-out;
+            border: 1px solid var(--color-border);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-card .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
         }
 
         .feature-card h3 {
-            color: #2c5282;
-            margin-bottom: 0.5rem;
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: 0.75rem;
         }
 
-        /* Location */
+        .feature-card p {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            color: var(--color-muted);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 1024px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .features-section {
+                padding: var(--section-padding-mobile);
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== LOCATION SECTION ===== */
+        .location-section {
+            background: linear-gradient(135deg, var(--color-bg), var(--color-card));
+        }
+
         .location-info {
-            background: #f7fafc;
-            padding: 2rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
+            background: var(--color-card);
+            padding: 2.5rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--color-border);
         }
 
         .location-info h3 {
-            color: #2c5282;
-            margin-bottom: 1rem;
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .location-info h3 .location-icon {
+            font-size: 1.5rem;
         }
 
         .location-details {
@@ -432,22 +653,46 @@
         }
 
         .location-details li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #e2e8f0;
+            font-family: var(--font-body);
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
         .location-details li:last-child {
             border-bottom: none;
         }
 
-        /* Contact Form */
+        .location-details li strong {
+            color: var(--color-text);
+            font-weight: 600;
+            min-width: 140px;
+        }
+
+        .location-details li span {
+            color: var(--color-muted);
+        }
+
+        /* ===== CONTACT FORM ===== */
+        .contact-section {
+            background: var(--color-card);
+            padding: var(--section-padding);
+        }
+
+        .contact-section .section-title {
+            text-align: center;
+        }
+
         .contact-form {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            background: var(--color-card);
+            padding: 2.5rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
             max-width: 600px;
             margin: 0 auto;
+            border: 1px solid var(--color-border);
         }
 
         .form-group {
@@ -457,49 +702,72 @@
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
+            font-family: var(--font-body);
             font-weight: 500;
-            color: #2d3748;
+            color: var(--color-text);
+            font-size: 0.95rem;
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #cbd5e0;
-            border-radius: 4px;
+            padding: 0.875rem 1rem;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-body);
             font-size: 1rem;
+            color: var(--color-text);
+            background: var(--color-card);
+            transition: all 300ms ease-in-out;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(45, 90, 123, 0.1);
         }
 
         .form-group textarea {
-            min-height: 120px;
+            min-height: 140px;
             resize: vertical;
         }
 
         .submit-btn {
             width: 100%;
-            background: #2c5282;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
             color: white;
-            padding: 1rem;
+            padding: 1rem 2rem;
             border: none;
-            border-radius: 4px;
-            font-size: 1.1rem;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s;
+            box-shadow: var(--shadow-md);
+            transition: all 300ms ease-in-out;
         }
 
         .submit-btn:hover {
-            background: #1a365d;
+            transform: scale(1.02);
+            box-shadow: var(--shadow-lg);
         }
 
-        /* Footer */
+        /* ===== FOOTER ===== */
         .footer {
-            background: #2d3748;
+            background: var(--color-primary);
             color: white;
-            padding: 2rem;
+            padding: 2rem 1rem;
             text-align: center;
         }
 
-        /* Lightbox */
+        .footer p {
+            font-family: var(--font-body);
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+
+        /* ===== LIGHTBOX ===== */
         .lightbox {
             display: none;
             position: fixed;
@@ -507,7 +775,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.9);
+            background: rgba(0, 0, 0, 0.95);
             z-index: 1000;
             align-items: center;
             justify-content: center;
@@ -520,6 +788,8 @@
         .lightbox-content {
             max-width: 90%;
             max-height: 90%;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-hero);
         }
 
         .lightbox-close {
@@ -529,32 +799,24 @@
             color: white;
             font-size: 2rem;
             cursor: pointer;
-            background: rgba(0,0,0,0.5);
-            width: 40px;
-            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: all 300ms ease-in-out;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero {
-                height: 80vh;
-            }
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
 
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .quick-info-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .section-title {
-                font-size: 1.5rem;
-            }
+        /* ===== UTILITIES ===== */
+        .text-accent {
+            color: var(--color-accent);
         }
     </style>
 </head>
@@ -562,7 +824,7 @@
     <!-- Header -->
     <header class="header">
         <div class="header-content">
-            <div class="logo">Departamento Villa Ballester</div>
+            <div class="logo">Villa Ballester</div>
             <a href="#contact" class="contact-btn">Consultar</a>
         </div>
     </header>
@@ -590,11 +852,11 @@
             <div class="carousel-slide"><img src="image18.jpeg" alt="Imagen 18"></div>
         </div>
         <div class="hero-overlay"></div>
-        <button class="carousel-arrow prev" onclick="changeSlide(-1)">&#10094;</button>
-        <button class="carousel-arrow next" onclick="changeSlide(1)">&#10095;</button>
+        <button class="carousel-arrow prev" onclick="changeSlide(-1)" aria-label="Anterior">&#10094;</button>
+        <button class="carousel-arrow next" onclick="changeSlide(1)" aria-label="Siguiente">&#10095;</button>
         <div class="carousel-controls">
             <div class="carousel-counter"><span id="current-slide">1</span>/18</div>
-            <button class="carousel-play-pause" id="play-pause-btn" onclick="togglePlayPause()">⏸️</button>
+            <button class="carousel-play-pause" id="play-pause-btn" onclick="togglePlayPause()" aria-label="Pausar">⏸️</button>
         </div>
         <div class="carousel-dots" id="carousel-dots"></div>
         <div class="hero-content">
@@ -604,28 +866,28 @@
         </div>
     </section>
 
-    <!-- Quick Info -->
+    <!-- Quick Info / Stats Cards -->
     <section class="quick-info">
         <div class="quick-info-content">
             <div class="info-item">
-                <div class="icon">🏠</div>
-                <div class="label">Superficie</div>
+                <span class="icon">🏠</span>
                 <div class="value">115 m²</div>
+                <div class="label">Superficie</div>
             </div>
             <div class="info-item">
-                <div class="icon">🛏️</div>
-                <div class="label">Dormitorios</div>
+                <span class="icon">🛏️</span>
                 <div class="value">3</div>
+                <div class="label">Dormitorios</div>
             </div>
             <div class="info-item">
-                <div class="icon">🚂</div>
-                <div class="label">Estación</div>
+                <span class="icon">🚂</span>
                 <div class="value">4 cuadras</div>
+                <div class="label">Estación</div>
             </div>
             <div class="info-item">
-                <div class="icon">🏪</div>
-                <div class="label">Centro Comercial</div>
+                <span class="icon">🏪</span>
                 <div class="value">3 cuadras</div>
+                <div class="label">Centro Comercial</div>
             </div>
         </div>
     </section>
@@ -636,85 +898,95 @@
         <section class="section">
             <div class="gallery-header">
                 <h2 class="section-title">Galería de Fotos</h2>
-                <button class="gallery-play-pause" id="gallery-play-pause-btn" onclick="toggleGalleryPlayPause()">⏸️</button>
+                <button class="gallery-play-pause" id="gallery-play-pause-btn" onclick="toggleGalleryPlayPause()" aria-label="Pausar galería">⏸️</button>
             </div>
             <div class="gallery-carousel">
                 <div class="gallery-track" id="gallery-track"></div>
             </div>
         </section>
+    </main>
 
-        <!-- Features Section -->
-        <section class="section">
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="features-container">
             <h2 class="section-title">Características</h2>
             <div class="features-grid">
                 <div class="feature-card">
-                    <h3>🏠 Espacios</h3>
+                    <span class="feature-icon">🏠</span>
+                    <h3>Espacios</h3>
                     <p>3 dormitorios amplios, living comedor integrado, cocina equipada con despenseros</p>
                 </div>
                 <div class="feature-card">
-                    <h3>🚿 Baño</h3>
-                    <p>Baño completo</p>
+                    <span class="feature-icon">🚿</span>
+                    <h3>Baño</h3>
+                    <p>Baño completo con todas las comodidades necesarias</p>
                 </div>
                 <div class="feature-card">
-                    <h3>📍 Ubicación</h3>
+                    <span class="feature-icon">📍</span>
+                    <h3>Ubicación</h3>
                     <p>Planta alta con acceso por escalera en zona residencial tranquila</p>
                 </div>
                 <div class="feature-card">
-                    <h3>🍳 Cocina</h3>
+                    <span class="feature-icon">🍳</span>
+                    <h3>Cocina</h3>
                     <p>Cocina equipada con dos armarios para guardar despensa</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Location Section -->
+    <!-- Location Section -->
+    <section class="container location-section">
         <section class="section">
             <h2 class="section-title">Ubicación</h2>
             <div class="location-info">
-                <h3>📍 Vicente López y Rivadavia</h3>
+                <h3><span class="location-icon">📍</span> Vicente López y Rivadavia</h3>
                 <ul class="location-details">
-                    <li><strong>Barrio:</strong> Villa Ballester</li>
-                    <li><strong>Partido:</strong> San Martín</li>
-                    <li><strong>Provincia:</strong> Buenos Aires</li>
-                    <li><strong>Estación de Tren:</strong> José León Suárez - Retiro (4 cuadras)</li>
-                    <li><strong>Centro Comercial:</strong> Calle Alvear (3 cuadras)</li>
+                    <li><strong>Barrio:</strong> <span>Villa Ballester</span></li>
+                    <li><strong>Partido:</strong> <span>San Martín</span></li>
+                    <li><strong>Provincia:</strong> <span>Buenos Aires</span></li>
+                    <li><strong>Estación de Tren:</strong> <span>José León Suárez - Retiro (4 cuadras)</span></li>
+                    <li><strong>Centro Comercial:</strong> <span>Calle Alvear (3 cuadras)</span></li>
                 </ul>
             </div>
         </section>
+    </section>
 
-        <!-- Contact Form -->
-        <section class="section" id="contact">
+    <!-- Contact Form Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
             <h2 class="section-title">Consultar por este Departamento</h2>
             <form class="contact-form" onsubmit="handleSubmit(event)">
                 <div class="form-group">
                     <label for="name">Nombre completo *</label>
-                    <input type="text" id="name" name="name" required>
+                    <input type="text" id="name" name="name" required placeholder="Tu nombre completo">
                 </div>
                 <div class="form-group">
                     <label for="email">Email *</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email" required placeholder="tu@email.com">
                 </div>
                 <div class="form-group">
                     <label for="phone">Teléfono</label>
-                    <input type="tel" id="phone" name="phone">
+                    <input type="tel" id="phone" name="phone" placeholder="Tu número de teléfono">
                 </div>
                 <div class="form-group">
                     <label for="message">Mensaje *</label>
-                    <textarea id="message" name="message" required>Hola, estoy interesado en el departamento de 115m² en Villa Ballester. Me gustaría recibir más información.</textarea>
+                    <textarea id="message" name="message" required placeholder="Tu mensaje...">Hola, estoy interesado en el departamento de 115m² en Villa Ballester. Me gustaría recibir más información.</textarea>
                 </div>
                 <button type="submit" class="submit-btn">Enviar Consulta</button>
             </form>
-        </section>
-    </main>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2026 Departamento Villa Ballester. Todos los derechos reservados.</p>
+        <p>&copy; 2026 Villa Ballester. Todos los derechos reservados.</p>
     </footer>
 
     <!-- Lightbox -->
     <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-        <span class="lightbox-close">&times;</span>
-        <img class="lightbox-content" id="lightbox-img">
+        <span class="lightbox-close" aria-label="Cerrar">&times;</span>
+        <img class="lightbox-content" id="lightbox-img" alt="Imagen ampliada">
     </div>
 
     <script>
@@ -740,6 +1012,7 @@
                 const dot = document.createElement('button');
                 dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
                 dot.onclick = () => goToSlide(i);
+                dot.setAttribute('aria-label', `Ir a imagen ${i + 1}`);
                 dotsContainer.appendChild(dot);
             }
 
@@ -765,14 +1038,13 @@
 
         function changeSlide(direction) {
             goToSlide(currentIndex + direction);
-            // Manual navigation does NOT stop auto-play
         }
 
         function startAutoRotate() {
             stopAutoRotate();
             autoRotateInterval = setInterval(() => {
                 goToSlide(currentIndex + 1);
-            }, 4000); // 4 seconds
+            }, 4000);
             isPlaying = true;
             updatePlayPauseButton();
         }
@@ -843,7 +1115,6 @@
                 const newVisibleItems = getVisibleItems();
                 if (newVisibleItems !== visibleItems) {
                     visibleItems = newVisibleItems;
-                    // Reset to valid index if needed
                     if (galleryIndex > propertyImages.length - visibleItems) {
                         galleryIndex = 0;
                     }
@@ -855,7 +1126,7 @@
         function updateGalleryPosition() {
             const track = document.getElementById('gallery-track');
             const itemWidth = 100 / visibleItems;
-            const gapAdjust = visibleItems > 1 ? (1 / visibleItems) : 0;
+            const gapAdjust = visibleItems > 1 ? (1.5 / visibleItems) : 0;
             const offset = galleryIndex * (itemWidth + gapAdjust);
             track.style.transform = `translateX(-${offset}%)`;
         }
@@ -870,7 +1141,7 @@
 
         function startGalleryRotate() {
             stopGalleryRotate();
-            galleryInterval = setInterval(advanceGallery, 3000); // 3 seconds
+            galleryInterval = setInterval(advanceGallery, 3000);
             galleryPlaying = true;
             updateGalleryPlayPauseButton();
         }
@@ -933,6 +1204,7 @@
             event.target.reset();
         }
 
+        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
