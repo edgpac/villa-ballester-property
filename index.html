@@ -288,67 +288,75 @@
     </section>
 
     <!-- Location Section -->
-    <section class="py-16 sm:py-24 bg-slate-50">
+    <section class="py-24 bg-slate-50">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-10 sm:mb-16">
-                <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-800 mb-3 sm:mb-4 tracking-tight">Ubicación</h2>
-                <p class="text-slate-500 max-w-2xl mx-auto text-sm sm:text-base">
-                    Excelente conectividad y servicios cerca
+            <div class="text-center mb-16">
+                <h2 class="font-display text-4xl font-bold text-slate-800 mb-4 tracking-tight">Ubicación Estratégica</h2>
+                <p class="text-slate-500 max-w-2xl mx-auto">
+                    Viví cerca de todo en la mejor zona residencial de Villa Ballester.
                 </p>
             </div>
 
-            <div class="grid lg:grid-cols-3 gap-6 sm:gap-8">
-                <!-- Location Details -->
-                <div class="lg:col-span-1 space-y-4">
-                    <div class="bg-white p-6 rounded-2xl shadow-lg border border-slate-100">
-                        <h3 class="font-display text-xl font-semibold text-slate-800 mb-4 flex items-center gap-2">
-                            <span>📍</span> Vicente López y Rivadavia
-                        </h3>
-                        <ul class="space-y-3">
-                            <li class="flex justify-between py-2 border-b border-slate-100">
-                                <span class="font-medium text-slate-700">Barrio</span>
-                                <span class="text-slate-500">Villa Ballester</span>
-                            </li>
-                            <li class="flex justify-between py-2 border-b border-slate-100">
-                                <span class="font-medium text-slate-700">Partido</span>
-                                <span class="text-slate-500">San Martín</span>
-                            </li>
-                            <li class="flex justify-between py-2 border-b border-slate-100">
-                                <span class="font-medium text-slate-700">Provincia</span>
-                                <span class="text-slate-500">Buenos Aires</span>
-                            </li>
-                            <li class="flex justify-between py-2 border-b border-slate-100">
-                                <span class="font-medium text-slate-700">Estación</span>
-                                <span class="text-slate-500">4 cuadras</span>
-                            </li>
-                            <li class="flex justify-between py-2">
-                                <span class="font-medium text-slate-700">Centro</span>
-                                <span class="text-slate-500">3 cuadras</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <a
-                        href="https://www.google.com/maps/search/?api=1&query=-34.5433,-58.5639"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="block bg-slate-800 hover:bg-slate-700 text-white p-4 rounded-xl text-center font-semibold transition-all duration-300 hover:scale-105">
-                        📍 Abrir en Google Maps
-                    </a>
+            <div class="grid md:grid-cols-3 gap-8 items-stretch">
+                <!-- Map - 2/3 width on desktop -->
+                <div class="md:col-span-2 rounded-3xl overflow-hidden shadow-2xl border border-slate-200 h-[400px] md:h-[500px]">
+                    <iframe
+                        src="https://www.google.com/maps?q=Vicente+Lopez+y+Rivadavia,+Villa+Ballester,+San+Martin,+Buenos+Aires,+Argentina&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                        width="100%"
+                        height="100%"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="eager"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Ubicación Villa Ballester">
+                    </iframe>
                 </div>
 
-                <!-- Map -->
-                <div class="lg:col-span-2">
-                    <div class="rounded-2xl overflow-hidden shadow-xl border border-slate-200 h-[300px] sm:h-[400px] lg:h-full min-h-[300px]">
-                        <iframe
-                            src="https://maps.google.com/maps?q=Vicente%20Lopez%20y%20Rivadavia,%20Villa%20Ballester,%20San%20Martin,%20Buenos%20Aires,%20Argentina&t=&z=16&ie=UTF8&iwloc=&output=embed"
-                            width="100%"
-                            height="100%"
-                            style="border:0;"
-                            allowfullscreen=""
-                            loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
+                <!-- Sidebar - 1/3 width on desktop -->
+                <div class="space-y-6">
+                    <div class="bg-white p-8 rounded-3xl shadow-xl border border-slate-100 h-full">
+                        <h3 class="text-xl font-bold mb-6 text-slate-800 flex items-center gap-2">
+                            <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Puntos Cercanos
+                        </h3>
+                        <div class="space-y-6">
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-xl shrink-0">🚆</div>
+                                <div>
+                                    <p class="font-bold text-slate-800">Estación Mitre</p>
+                                    <p class="text-sm text-slate-500">4 cuadras (José León Suárez - Retiro)</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-xl shrink-0">🛒</div>
+                                <div>
+                                    <p class="font-bold text-slate-800">Centro Comercial</p>
+                                    <p class="text-sm text-slate-500">3 cuadras (Calle Alvear)</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-xl shrink-0">🏛️</div>
+                                <div>
+                                    <p class="font-bold text-slate-800">Zona Residencial</p>
+                                    <p class="text-sm text-slate-500">Barrio tranquilo y seguro</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-12 pt-8 border-t border-slate-100">
+                            <a
+                                href="https://www.google.com/maps/search/?api=1&query=Vicente+Lopez+y+Rivadavia,+Villa+Ballester,+San+Martin,+Buenos+Aires,+Argentina"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="w-full inline-flex items-center justify-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold py-3 rounded-xl transition-colors">
+                                ¿Cómo llegar?
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
