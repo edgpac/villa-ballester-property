@@ -6,489 +6,60 @@
     <meta name="description" content="Departamento de 3 dormitorios en Villa Ballester, San Martín. 115 m², planta alta, zona residencial tranquila. A 4 cuadras de la estación y 3 cuadras del centro comercial.">
     <title>Departamento 3 Dormitorios en Villa Ballester - 115m² | San Martín, Buenos Aires</title>
 
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'display': ['Playfair Display', 'Georgia', 'serif'],
+                        'body': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-out',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+
     <style>
-        /* ===== CSS CUSTOM PROPERTIES ===== */
-        :root {
-            /* Colors - Deep Ocean Blue Theme */
-            --color-bg: #f8f9fb;
-            --color-primary: #2d5a7b;
-            --color-primary-hover: #1f3d54;
-            --color-accent: #f59e0b;
-            --color-text: #252f3f;
-            --color-muted: #6b7280;
-            --color-card: #ffffff;
-            --color-border: #e2e8f0;
-
-            /* Shadows */
-            --shadow-sm: 0 1px 2px rgba(37, 47, 63, 0.05);
-            --shadow-md: 0 4px 12px rgba(37, 47, 63, 0.08);
-            --shadow-lg: 0 8px 24px rgba(37, 47, 63, 0.12);
-            --shadow-hero: 0 20px 40px rgba(37, 47, 63, 0.15);
-
-            /* Typography */
-            --font-heading: 'Playfair Display', Georgia, serif;
-            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-
-            /* Spacing */
-            --container-max: 1200px;
-            --section-padding: 4rem 1rem;
-            --section-padding-mobile: 3rem 1rem;
-
-            /* Border Radius */
-            --radius-sm: 0.5rem;
-            --radius-md: 0.75rem;
-            --radius-lg: 1rem;
-        }
-
-        /* ===== RESET & BASE ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
             scroll-behavior: smooth;
         }
 
-        body {
-            font-family: var(--font-body);
-            font-size: 1rem;
-            font-weight: 400;
-            line-height: 1.6;
-            color: var(--color-text);
-            background-color: var(--color-bg);
+        h1, h2, h3, h4, .font-display {
+            font-family: 'Playfair Display', Georgia, serif;
         }
 
-        /* ===== TYPOGRAPHY ===== */
-        h1, h2, h3, h4, h5, h6 {
-            font-family: var(--font-heading);
-            font-weight: 600;
-            line-height: 1.3;
-            color: var(--color-text);
-        }
-
-        h1 {
-            font-size: 3rem;
-            font-weight: 700;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-        }
-
-        h3 {
-            font-size: 2rem;
-        }
-
-        @media (max-width: 640px) {
-            h1 { font-size: 2rem; }
-            h2 { font-size: 1.75rem; }
-            h3 { font-size: 1.5rem; }
-        }
-
-        /* ===== HEADER ===== */
-        .header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 1.25rem 1.5rem;
-            box-shadow: var(--shadow-sm);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-content {
-            max-width: var(--container-max);
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .logo-title {
-            font-family: var(--font-heading);
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--color-primary);
-            letter-spacing: -0.5px;
-        }
-
-        .logo-subtitle {
-            font-family: var(--font-body);
-            font-size: 0.75rem;
-            font-weight: 400;
-            color: var(--color-muted);
-            margin-top: 0.125rem;
-            letter-spacing: 0.025em;
-        }
-
-        @media (max-width: 640px) {
-            .logo-title {
-                font-size: 1.25rem;
-            }
-
-            .logo-subtitle {
-                font-size: 0.65rem;
-            }
-        }
-
-        .contact-btn {
-            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: var(--radius-sm);
-            cursor: pointer;
-            font-family: var(--font-body);
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-decoration: none;
-            box-shadow: var(--shadow-md);
-            transition: all 300ms ease-in-out;
-        }
-
-        .contact-btn:hover {
-            transform: scale(1.05);
-            box-shadow: var(--shadow-lg);
-        }
-
-        /* WhatsApp Button */
-        .whatsapp-btn {
-            background: #25D366;
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: var(--radius-sm);
-            cursor: pointer;
-            font-family: var(--font-body);
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-decoration: none;
-            box-shadow: var(--shadow-md);
-            transition: all 300ms ease-in-out;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .whatsapp-btn:hover {
-            background: #1ebe5d;
-            transform: scale(1.05);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .whatsapp-btn svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-        }
-
-        .hero-whatsapp {
-            padding: 1rem 2.5rem;
-            font-size: 1rem;
-            box-shadow: var(--shadow-hero);
-        }
-
-        .hero-whatsapp svg {
-            width: 24px;
-            height: 24px;
-        }
-
-        /* ===== HERO SECTION ===== */
-        .hero {
-            position: relative;
-            height: 600px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
-            overflow: hidden;
-        }
-
-        .hero-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center center;
-            z-index: 0;
-        }
-
-        .hero-fallback {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center center;
-            z-index: -1;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(45, 90, 123, 0.45), rgba(31, 61, 84, 0.55));
-            z-index: 1;
-        }
-
-        @media (max-width: 1024px) {
-            .hero {
-                height: 500px;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .hero {
-                height: 400px;
-            }
-        }
-
-        .hero-content {
-            z-index: 2;
-            padding: 2rem;
-            max-width: 800px;
-        }
-
-        .hero-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.8rem, 4vw, 3.5rem);
-            font-weight: 700;
-            color: #ffffff;
-            letter-spacing: 0.5px;
-            text-align: center;
-            white-space: nowrap;
-            text-shadow:
-                0 1px 0 rgba(0,0,0,0.15),
-                0 2px 4px rgba(0,0,0,0.35),
-                0 8px 20px rgba(0,0,0,0.45);
-            margin-bottom: 0.5rem;
-        }
-
-        .hero-title .highlight {
-            color: #25D366;
-            text-shadow:
-                0 1px 0 rgba(0,0,0,0.15),
-                0 2px 4px rgba(37,211,102,0.25),
-                0 8px 20px rgba(0,0,0,0.45);
-        }
-
-        .hero p {
-            font-family: var(--font-body);
-            font-size: 1.25rem;
-            font-weight: 400;
-            margin-bottom: 2rem;
-            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-            letter-spacing: 0.5px;
-        }
-
-        .hero .contact-btn {
-            padding: 1rem 2.5rem;
-            font-size: 1rem;
-            box-shadow: var(--shadow-hero);
-        }
-
-        /* Video Play/Pause Button */
-        .video-controls {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            z-index: 3;
-        }
-
-        .video-play-pause {
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(4px);
-            color: white;
-            border: none;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 300ms ease-in-out;
-        }
-
-        .video-play-pause:hover {
-            background: rgba(0, 0, 0, 0.6);
-            transform: scale(1.1);
-        }
-
-        @media (max-width: 640px) {
-            .hero-title {
-                font-size: clamp(1.4rem, 5vw, 2rem);
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-        }
-
-        /* ===== QUICK INFO / STATS CARDS ===== */
-        .quick-info {
-            background: var(--color-card);
-            padding: var(--section-padding);
-            margin-top: -3rem;
-            position: relative;
-            z-index: 10;
-        }
-
-        .quick-info-content {
-            max-width: var(--container-max);
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-        }
-
-        .info-item {
-            background: var(--color-card);
-            padding: 1.75rem 1.5rem;
-            border-radius: var(--radius-lg);
-            text-align: center;
-            box-shadow: var(--shadow-md);
-            transition: all 300ms ease-in-out;
-            border: 1px solid var(--color-border);
-        }
-
-        .info-item:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .info-item .icon {
-            font-size: 2.5rem;
-            margin-bottom: 0.75rem;
-            display: block;
-        }
-
-        .info-item .value {
-            font-family: var(--font-heading);
-            font-size: 1.75rem;
-            font-weight: 600;
-            color: var(--color-primary);
-            margin-bottom: 0.25rem;
-        }
-
-        .info-item .label {
-            font-family: var(--font-body);
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: var(--color-muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        @media (max-width: 1024px) {
-            .quick-info-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 640px) {
-            .quick-info {
-                padding: var(--section-padding-mobile);
-                margin-top: -2rem;
-            }
-
-            .quick-info-content {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* ===== MAIN CONTENT ===== */
-        .container {
-            max-width: var(--container-max);
-            margin: 0 auto;
-            padding: var(--section-padding);
-        }
-
-        .section {
-            margin-bottom: 5rem;
-        }
-
-        .section-title {
-            font-family: var(--font-heading);
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-            color: var(--color-text);
-        }
-
-        @media (max-width: 640px) {
-            .container {
-                padding: var(--section-padding-mobile);
-            }
-
-            .section-title {
-                font-size: 1.75rem;
-            }
-        }
-
-        /* ===== GALLERY SECTION ===== */
-        .gallery-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-
-        .gallery-header .section-title {
-            margin-bottom: 0;
-        }
-
-        .gallery-play-pause {
-            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
-            color: white;
-            border: none;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.25rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 300ms ease-in-out;
-            box-shadow: var(--shadow-md);
-        }
-
-        .gallery-play-pause:hover {
-            transform: scale(1.1);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .gallery-carousel {
-            position: relative;
-            overflow: hidden;
-            border-radius: var(--radius-lg);
+        .glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
 
         .gallery-track {
             display: flex;
-            gap: 1.5rem;
+            gap: 1rem;
             transition: transform 0.5s ease-in-out;
         }
 
@@ -496,623 +67,348 @@
             .gallery-track {
                 gap: 0;
             }
-
-            .gallery-item {
-                flex: 0 0 100%;
-                border-radius: var(--radius-md);
-            }
         }
 
-        .gallery-item {
-            flex: 0 0 100%;
-            position: relative;
-            overflow: hidden;
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            background: var(--color-bg);
-            aspect-ratio: 4/3;
-            box-shadow: var(--shadow-md);
-            transition: all 300ms ease-in-out;
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.02);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center center;
-            display: block;
-            transition: transform 400ms ease;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-
-        @media (min-width: 641px) {
-            .gallery-item {
-                flex: 0 0 calc(50% - 0.75rem);
-            }
-        }
-
-        @media (min-width: 992px) {
-            .gallery-item {
-                flex: 0 0 calc(33.333% - 1rem);
-            }
-        }
-
-        /* Gallery Navigation Arrows */
-        .gallery-nav-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 44px;
-            height: 44px;
-            background: rgba(255, 255, 255, 0.9);
-            border: none;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 10;
-            box-shadow: var(--shadow-md);
-            transition: all 300ms ease-in-out;
-        }
-
-        .gallery-nav-arrow:hover {
-            background: rgba(255, 255, 255, 1);
-            transform: translateY(-50%) scale(1.1);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .gallery-nav-arrow.prev {
-            left: 0.75rem;
-        }
-
-        .gallery-nav-arrow.next {
-            right: 0.75rem;
-        }
-
-        .gallery-nav-arrow svg {
-            width: 20px;
-            height: 20px;
-            stroke: var(--color-primary);
-            stroke-width: 2.5;
-            fill: none;
-        }
-
-        /* Hide arrows on larger screens, show on mobile/tablet */
-        @media (min-width: 992px) {
-            .gallery-nav-arrow {
-                opacity: 0;
-            }
-
-            .gallery-carousel:hover .gallery-nav-arrow {
-                opacity: 1;
-            }
-        }
-
-        /* Gallery Navigation Dots */
-        .gallery-dots {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .gallery-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 4px;
-            background: rgba(45, 90, 123, 0.3);
-            border: none;
-            cursor: pointer;
-            transition: all 300ms ease-in-out;
-            padding: 0;
-        }
-
-        .gallery-dot:hover {
-            background: rgba(45, 90, 123, 0.5);
-        }
-
-        .gallery-dot.active {
-            width: 24px;
-            background: var(--color-primary);
-        }
-
-        /* ===== FEATURES SECTION ===== */
-        .features-section {
-            background: var(--color-bg);
-            padding: var(--section-padding);
-            margin: 0 -1rem;
-            padding-left: 1rem;
-            padding-right: 1rem;
-        }
-
-        .features-container {
-            max-width: var(--container-max);
-            margin: 0 auto;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-        }
-
-        .feature-card {
-            background: var(--color-card);
-            padding: 2rem 1.5rem;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-md);
-            text-align: center;
-            transition: all 300ms ease-in-out;
-            border: 1px solid var(--color-border);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .feature-card .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .feature-card h3 {
-            font-family: var(--font-heading);
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--color-primary);
-            margin-bottom: 0.75rem;
-        }
-
-        .feature-card p {
-            font-family: var(--font-body);
-            font-size: 0.9rem;
-            color: var(--color-muted);
-            line-height: 1.6;
-        }
-
-        @media (max-width: 1024px) {
-            .features-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 640px) {
-            .features-section {
-                padding: var(--section-padding-mobile);
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* ===== LOCATION SECTION ===== */
-        .location-section {
-            background: linear-gradient(135deg, var(--color-bg), var(--color-card));
-        }
-
-        .location-info {
-            background: var(--color-card);
-            padding: 2.5rem;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-md);
-            border: 1px solid var(--color-border);
-        }
-
-        .location-info h3 {
-            font-family: var(--font-heading);
-            font-size: 1.5rem;
-            color: var(--color-primary);
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .location-info h3 .location-icon {
-            font-size: 1.5rem;
-        }
-
-        .location-details {
-            list-style: none;
-        }
-
-        .location-details li {
-            font-family: var(--font-body);
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--color-border);
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .location-details li:last-child {
-            border-bottom: none;
-        }
-
-        .location-details li strong {
-            color: var(--color-text);
-            font-weight: 600;
-            min-width: 140px;
-        }
-
-        .location-details li span {
-            color: var(--color-muted);
-        }
-
-        /* ===== GOOGLE MAPS SECTION ===== */
-        .map-section {
-            background: var(--color-card);
-            padding: var(--section-padding);
-        }
-
-        .map-section .section-title {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .map-container {
-            max-width: var(--container-max);
-            margin: 0 auto;
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid var(--color-border);
-        }
-
-        .map-container iframe {
-            width: 100%;
-            height: 450px;
-            border: none;
-            display: block;
-        }
-
-        @media (max-width: 640px) {
-            .map-container iframe {
-                height: 300px;
-            }
-        }
-
-        /* ===== FOOTER ===== */
-        .footer {
-            background: var(--color-primary);
-            color: white;
-            padding: 2rem 1rem;
-            text-align: center;
-        }
-
-        .footer p {
-            font-family: var(--font-body);
-            font-size: 0.875rem;
-            opacity: 0.9;
-        }
-
-        /* ===== LIGHTBOX ===== */
         .lightbox {
             display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
         }
 
         .lightbox.active {
             display: flex;
         }
 
-        .lightbox-content {
-            max-width: 85%;
-            max-height: 80%;
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-hero);
-            object-fit: contain;
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
 
-        .lightbox-close {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-            background: rgba(255, 255, 255, 0.1);
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 300ms ease-in-out;
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
         }
 
-        .lightbox-close:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: scale(1.1);
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
         }
 
-        .lightbox-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-            background: rgba(255, 255, 255, 0.1);
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 300ms ease-in-out;
-            border: none;
-            z-index: 1001;
-        }
-
-        .lightbox-arrow:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .lightbox-arrow.prev {
-            left: 1.5rem;
-        }
-
-        .lightbox-arrow.next {
-            right: 1.5rem;
-        }
-
-        .lightbox-counter {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            color: white;
-            font-family: var(--font-body);
-            font-size: 1rem;
-            font-weight: 500;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 0.5rem 1.25rem;
-            border-radius: 2rem;
-            backdrop-filter: blur(4px);
-        }
-
-        @media (max-width: 640px) {
-            .lightbox-arrow {
-                width: 44px;
-                height: 44px;
-                font-size: 1.5rem;
-            }
-
-            .lightbox-arrow.prev {
-                left: 0.75rem;
-            }
-
-            .lightbox-arrow.next {
-                right: 0.75rem;
-            }
-
-            .lightbox-close {
-                top: 1rem;
-                right: 1rem;
-                width: 40px;
-                height: 40px;
-                font-size: 1.5rem;
-            }
-        }
-
-        /* ===== UTILITIES ===== */
-        .text-accent {
-            color: var(--color-accent);
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
         }
     </style>
 </head>
-<body>
-    <!-- Header -->
-    <header class="header">
-        <div class="header-content">
-            <div class="logo">
-                <div class="logo-title">Villa Ballester</div>
-                <div class="logo-subtitle">Departamento en venta</div>
+<body class="bg-slate-50 text-slate-800 font-body">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-slate-200/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+            <div class="flex flex-col">
+                <span class="font-display font-bold text-lg sm:text-xl text-slate-800 tracking-tight leading-tight">Villa Ballester</span>
+                <span class="text-[10px] uppercase tracking-widest text-slate-500 font-medium">Departamento en venta</span>
             </div>
-            <a href="https://wa.me/526241259640" target="_blank" rel="noopener noreferrer" class="whatsapp-btn">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                WhatsApp
+            <a
+                href="https://wa.me/526241259640"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                <span class="hidden sm:inline">Contactar</span>
             </a>
         </div>
-    </header>
+    </nav>
 
-    <!-- Hero Section with Video -->
-    <section class="hero" id="hero-video">
-        <!-- Fallback Image -->
-        <img src="image1.jpeg" alt="Departamento en Villa Ballester" class="hero-fallback">
-
+    <!-- Hero Section -->
+    <section class="relative h-screen min-h-[600px] max-h-[900px] flex items-center justify-center overflow-hidden">
         <!-- Video Background -->
-        <video
-            class="hero-video"
-            id="hero-video-player"
-            autoplay
-            loop
-            muted
-            playsinline>
-            <source src="property-video.mp4" type="video/mp4">
-        </video>
-
-        <!-- Overlay -->
-        <div class="hero-overlay"></div>
-
-        <!-- Video Controls -->
-        <div class="video-controls">
-            <button class="video-play-pause" id="video-play-pause-btn" onclick="toggleVideoPlayPause()" aria-label="Pausar video">⏸️</button>
+        <div class="absolute inset-0 z-0">
+            <img src="image1.jpeg" alt="Departamento en Villa Ballester" class="absolute inset-0 w-full h-full object-cover">
+            <video
+                id="hero-video-player"
+                autoplay
+                loop
+                muted
+                playsinline
+                class="absolute inset-0 w-full h-full object-cover">
+                <source src="property-video.mp4" type="video/mp4">
+            </video>
+            <div class="absolute inset-0 bg-gradient-to-b from-slate-900/70 via-slate-900/40 to-slate-900/80"></div>
         </div>
 
-        <!-- Content -->
-        <div class="hero-content">
-            <h1 class="hero-title">Departamento <span class="highlight">3</span> Dormitorios</h1>
-            <p>Villa Ballester, San Martín • 115 m²</p>
-            <a href="https://wa.me/526241259640?text=Hola%2C%20estoy%20interesado%20en%20el%20departamento%20de%20115m%C2%B2%20en%20Villa%20Ballester.%20Me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n." target="_blank" rel="noopener noreferrer" class="whatsapp-btn hero-whatsapp">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <!-- Video Controls -->
+        <button
+            id="video-play-pause-btn"
+            onclick="toggleVideoPlayPause()"
+            aria-label="Pausar video"
+            class="absolute top-20 right-4 z-20 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white flex items-center justify-center transition-all duration-300 hover:scale-110">
+            <span id="video-icon">⏸️</span>
+        </button>
+
+        <!-- Hero Content -->
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto animate-fade-in">
+            <h1 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight">
+                Departamento <span class="text-green-400">3</span> Dormitorios
+            </h1>
+            <p class="text-lg sm:text-xl md:text-2xl text-slate-200 mb-8 sm:mb-10 font-light">
+                Villa Ballester, San Martín • 115 m²
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a
+                    href="https://wa.me/526241259640?text=Hola%2C%20estoy%20interesado%20en%20el%20departamento%20de%20115m%C2%B2%20en%20Villa%20Ballester.%20Me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="bg-green-600 hover:bg-green-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg shadow-2xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3">
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    Consultar por WhatsApp
+                </a>
+                <button
+                    onclick="document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' })"
+                    class="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border border-white/30 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg transition-all duration-300 hover:scale-105">
+                    Ver Galería
+                </button>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-white/60">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Stats Cards -->
+    <div class="relative -mt-16 sm:-mt-20 z-20 max-w-7xl mx-auto px-4">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+            <div class="bg-white p-4 sm:p-6 rounded-2xl shadow-xl border border-slate-100 flex flex-col items-center text-center hover:scale-105 transition-transform duration-300 hover:shadow-2xl">
+                <span class="text-2xl sm:text-3xl mb-2">🏠</span>
+                <span class="text-xl sm:text-2xl font-bold text-slate-800">115 m²</span>
+                <span class="text-[10px] sm:text-xs uppercase tracking-widest text-slate-400 font-medium mt-1">Superficie</span>
+            </div>
+            <div class="bg-white p-4 sm:p-6 rounded-2xl shadow-xl border border-slate-100 flex flex-col items-center text-center hover:scale-105 transition-transform duration-300 hover:shadow-2xl">
+                <span class="text-2xl sm:text-3xl mb-2">🛏️</span>
+                <span class="text-xl sm:text-2xl font-bold text-slate-800">3</span>
+                <span class="text-[10px] sm:text-xs uppercase tracking-widest text-slate-400 font-medium mt-1">Dormitorios</span>
+            </div>
+            <div class="bg-white p-4 sm:p-6 rounded-2xl shadow-xl border border-slate-100 flex flex-col items-center text-center hover:scale-105 transition-transform duration-300 hover:shadow-2xl">
+                <span class="text-2xl sm:text-3xl mb-2">🚆</span>
+                <span class="text-xl sm:text-2xl font-bold text-slate-800">4 cuadras</span>
+                <span class="text-[10px] sm:text-xs uppercase tracking-widest text-slate-400 font-medium mt-1">Estación</span>
+            </div>
+            <div class="bg-white p-4 sm:p-6 rounded-2xl shadow-xl border border-slate-100 flex flex-col items-center text-center hover:scale-105 transition-transform duration-300 hover:shadow-2xl">
+                <span class="text-2xl sm:text-3xl mb-2">🛒</span>
+                <span class="text-xl sm:text-2xl font-bold text-slate-800">3 cuadras</span>
+                <span class="text-[10px] sm:text-xs uppercase tracking-widest text-slate-400 font-medium mt-1">Centro</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-16 sm:py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-10 sm:mb-16">
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-800 mb-3 sm:mb-4 tracking-tight">Galería de Fotos</h2>
+                <p class="text-slate-500 max-w-2xl mx-auto text-sm sm:text-base">
+                    Conocé cada rincón de tu futuro hogar
+                </p>
+            </div>
+
+            <!-- Gallery Controls -->
+            <div class="flex justify-end mb-4">
+                <button
+                    id="gallery-play-pause-btn"
+                    onclick="toggleGalleryPlayPause()"
+                    aria-label="Pausar galería"
+                    class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-slate-800 hover:bg-slate-700 text-white flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-lg">
+                    <span id="gallery-icon">⏸️</span>
+                </button>
+            </div>
+
+            <!-- Gallery Carousel -->
+            <div class="relative overflow-hidden rounded-2xl sm:rounded-3xl">
+                <!-- Navigation Arrows -->
+                <button
+                    onclick="navigateGallery(-1)"
+                    aria-label="Imagen anterior"
+                    class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/90 hover:bg-white shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110">
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </button>
+                <button
+                    onclick="navigateGallery(1)"
+                    aria-label="Siguiente imagen"
+                    class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/90 hover:bg-white shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110">
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+
+                <!-- Gallery Track -->
+                <div class="gallery-track" id="gallery-track"></div>
+            </div>
+
+            <!-- Gallery Dots -->
+            <div class="flex justify-center gap-2 mt-6 flex-wrap" id="gallery-dots"></div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 sm:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-10 sm:mb-16">
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-800 mb-3 sm:mb-4 tracking-tight">Características</h2>
+                <p class="text-slate-500 max-w-2xl mx-auto text-sm sm:text-base">
+                    Todo lo que necesitás para vivir cómodo
+                </p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                <div class="bg-slate-50 p-6 sm:p-8 rounded-2xl border border-slate-100 text-center hover:shadow-xl hover:bg-white transition-all duration-300 group">
+                    <span class="text-4xl sm:text-5xl mb-4 block group-hover:scale-110 transition-transform duration-300">🏠</span>
+                    <h3 class="font-display text-lg sm:text-xl font-semibold text-slate-800 mb-2">Espacios</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">3 dormitorios amplios, living comedor integrado, cocina equipada</p>
+                </div>
+                <div class="bg-slate-50 p-6 sm:p-8 rounded-2xl border border-slate-100 text-center hover:shadow-xl hover:bg-white transition-all duration-300 group">
+                    <span class="text-4xl sm:text-5xl mb-4 block group-hover:scale-110 transition-transform duration-300">🚿</span>
+                    <h3 class="font-display text-lg sm:text-xl font-semibold text-slate-800 mb-2">Baño</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Baño completo con todas las comodidades necesarias</p>
+                </div>
+                <div class="bg-slate-50 p-6 sm:p-8 rounded-2xl border border-slate-100 text-center hover:shadow-xl hover:bg-white transition-all duration-300 group">
+                    <span class="text-4xl sm:text-5xl mb-4 block group-hover:scale-110 transition-transform duration-300">📍</span>
+                    <h3 class="font-display text-lg sm:text-xl font-semibold text-slate-800 mb-2">Ubicación</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Planta alta con acceso por escalera en zona residencial tranquila</p>
+                </div>
+                <div class="bg-slate-50 p-6 sm:p-8 rounded-2xl border border-slate-100 text-center hover:shadow-xl hover:bg-white transition-all duration-300 group">
+                    <span class="text-4xl sm:text-5xl mb-4 block group-hover:scale-110 transition-transform duration-300">🍳</span>
+                    <h3 class="font-display text-lg sm:text-xl font-semibold text-slate-800 mb-2">Cocina</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Cocina equipada con dos armarios para guardar despensa</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="py-16 sm:py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-10 sm:mb-16">
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-800 mb-3 sm:mb-4 tracking-tight">Ubicación</h2>
+                <p class="text-slate-500 max-w-2xl mx-auto text-sm sm:text-base">
+                    Excelente conectividad y servicios cerca
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-6 sm:gap-8">
+                <!-- Location Details -->
+                <div class="lg:col-span-1 space-y-4">
+                    <div class="bg-white p-6 rounded-2xl shadow-lg border border-slate-100">
+                        <h3 class="font-display text-xl font-semibold text-slate-800 mb-4 flex items-center gap-2">
+                            <span>📍</span> Vicente López y Rivadavia
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="flex justify-between py-2 border-b border-slate-100">
+                                <span class="font-medium text-slate-700">Barrio</span>
+                                <span class="text-slate-500">Villa Ballester</span>
+                            </li>
+                            <li class="flex justify-between py-2 border-b border-slate-100">
+                                <span class="font-medium text-slate-700">Partido</span>
+                                <span class="text-slate-500">San Martín</span>
+                            </li>
+                            <li class="flex justify-between py-2 border-b border-slate-100">
+                                <span class="font-medium text-slate-700">Provincia</span>
+                                <span class="text-slate-500">Buenos Aires</span>
+                            </li>
+                            <li class="flex justify-between py-2 border-b border-slate-100">
+                                <span class="font-medium text-slate-700">Estación</span>
+                                <span class="text-slate-500">4 cuadras</span>
+                            </li>
+                            <li class="flex justify-between py-2">
+                                <span class="font-medium text-slate-700">Centro</span>
+                                <span class="text-slate-500">3 cuadras</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <a
+                        href="https://www.google.com/maps/search/?api=1&query=-34.5433,-58.5639"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="block bg-slate-800 hover:bg-slate-700 text-white p-4 rounded-xl text-center font-semibold transition-all duration-300 hover:scale-105">
+                        📍 Abrir en Google Maps
+                    </a>
+                </div>
+
+                <!-- Map -->
+                <div class="lg:col-span-2">
+                    <div class="rounded-2xl overflow-hidden shadow-xl border border-slate-200 h-[300px] sm:h-[400px] lg:h-full min-h-[300px]">
+                        <iframe
+                            src="https://maps.google.com/maps?q=Vicente%20Lopez%20y%20Rivadavia,%20Villa%20Ballester,%20San%20Martin,%20Buenos%20Aires,%20Argentina&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                            width="100%"
+                            height="100%"
+                            style="border:0;"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 sm:py-24 bg-gradient-to-br from-slate-800 to-slate-900">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mb-4 sm:mb-6">¿Te interesa este departamento?</h2>
+            <p class="text-slate-300 text-base sm:text-lg mb-8 sm:mb-10 max-w-2xl mx-auto">
+                Contactanos por WhatsApp para coordinar una visita o resolver tus dudas
+            </p>
+            <a
+                href="https://wa.me/526241259640?text=Hola%2C%20estoy%20interesado%20en%20el%20departamento%20de%20115m%C2%B2%20en%20Villa%20Ballester.%20Me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n."
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-3 bg-green-600 hover:bg-green-500 text-white px-8 sm:px-10 py-4 sm:py-5 rounded-xl font-bold text-lg sm:text-xl shadow-2xl hover:scale-105 transition-all duration-300">
+                <svg class="w-6 h-6 sm:w-7 sm:h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                 Consultar por WhatsApp
             </a>
         </div>
     </section>
 
-    <!-- Quick Info / Stats Cards -->
-    <section class="quick-info">
-        <div class="quick-info-content">
-            <div class="info-item">
-                <span class="icon">🏠</span>
-                <div class="value">115 m²</div>
-                <div class="label">Superficie</div>
-            </div>
-            <div class="info-item">
-                <span class="icon">🛏️</span>
-                <div class="value">3</div>
-                <div class="label">Dormitorios</div>
-            </div>
-            <div class="info-item">
-                <span class="icon">🚂</span>
-                <div class="value">4 cuadras</div>
-                <div class="label">Estación</div>
-            </div>
-            <div class="info-item">
-                <span class="icon">🏪</span>
-                <div class="value">3 cuadras</div>
-                <div class="label">Centro Comercial</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Main Content -->
-    <main class="container">
-        <!-- Gallery Section -->
-        <section class="section">
-            <div class="gallery-header">
-                <h2 class="section-title">Galería de Fotos</h2>
-                <button class="gallery-play-pause" id="gallery-play-pause-btn" onclick="toggleGalleryPlayPause()" aria-label="Pausar galería">⏸️</button>
-            </div>
-            <div class="gallery-carousel">
-                <button class="gallery-nav-arrow prev" onclick="navigateGallery(-1)" aria-label="Imagen anterior">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                </button>
-                <div class="gallery-track" id="gallery-track"></div>
-                <button class="gallery-nav-arrow next" onclick="navigateGallery(1)" aria-label="Siguiente imagen">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                </button>
-            </div>
-            <div class="gallery-dots" id="gallery-dots"></div>
-        </section>
-    </main>
-
-    <!-- Features Section -->
-    <section class="features-section">
-        <div class="features-container">
-            <h2 class="section-title">Características</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <span class="feature-icon">🏠</span>
-                    <h3>Espacios</h3>
-                    <p>3 dormitorios amplios, living comedor integrado, cocina equipada con despenseros</p>
-                </div>
-                <div class="feature-card">
-                    <span class="feature-icon">🚿</span>
-                    <h3>Baño</h3>
-                    <p>Baño completo con todas las comodidades necesarias</p>
-                </div>
-                <div class="feature-card">
-                    <span class="feature-icon">📍</span>
-                    <h3>Ubicación</h3>
-                    <p>Planta alta con acceso por escalera en zona residencial tranquila</p>
-                </div>
-                <div class="feature-card">
-                    <span class="feature-icon">🍳</span>
-                    <h3>Cocina</h3>
-                    <p>Cocina equipada con dos armarios para guardar despensa</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Proximidades Section -->
-    <section class="container location-section">
-        <section class="section">
-            <h2 class="section-title">Proximidades</h2>
-            <div class="location-info">
-                <h3><span class="location-icon">📍</span> Vicente López y Rivadavia</h3>
-                <ul class="location-details">
-                    <li><strong>Barrio:</strong> <span>Villa Ballester</span></li>
-                    <li><strong>Partido:</strong> <span>San Martín</span></li>
-                    <li><strong>Provincia:</strong> <span>Buenos Aires</span></li>
-                    <li><strong>Estación de Tren:</strong> <span>José León Suárez - Retiro (4 cuadras)</span></li>
-                    <li><strong>Centro Comercial:</strong> <span>Calle Alvear (3 cuadras)</span></li>
-                </ul>
-            </div>
-        </section>
-    </section>
-
-    <!-- Google Maps Section -->
-    <div class="location-map-section" id="ubicacion" style="padding: 4rem 1rem; background: #f8f9fb;">
-        <div style="max-width: 1200px; margin: 0 auto;">
-            <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; text-align: center; margin-bottom: 1.5rem; color: #252f3f;">Ubicación</h2>
-
-            <p style="text-align: center; font-size: 1.125rem; color: #252f3f; margin-bottom: 2rem;">
-             📍 Vicente López y Rivadavia<br>
-                Villa Ballester, San Martín<br>
-                Buenos Aires, Argentina
-            </p>
-
-            <iframe
-                src="https://maps.google.com/maps?q=Vicente%20Lopez%20y%20Rivadavia,%20Villa%20Ballester,%20San%20Martin,%20Buenos%20Aires,%20Argentina&t=&z=16&ie=UTF8&iwloc=&output=embed"
-                width="100%"
-                height="450"
-                style="border:0; border-radius: 1rem; box-shadow: 0 4px 12px rgba(37, 47, 63, 0.08);"
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-
-            <div style="text-align: center; margin-top: 1.5rem;">
-                <a href="https://www.google.com/maps/search/?api=1&query=-34.5433,-58.5639" target="_blank" style="color: #2d5a7b; font-weight: 600; text-decoration: none;">
-                    📍 Abrir en Google Maps →
-                </a>
-            </div>
-        </div>
-    </div>
-
     <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2026 Villa Ballester. Todos los derechos reservados.</p>
+    <footer class="bg-slate-900 text-white py-8 sm:py-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="font-display text-xl sm:text-2xl font-bold mb-2">Villa Ballester</div>
+            <p class="text-slate-400 text-sm">© 2026 Villa Ballester. Todos los derechos reservados.</p>
+        </div>
     </footer>
 
     <!-- Lightbox -->
-    <div class="lightbox" id="lightbox">
-        <span class="lightbox-close" onclick="closeLightbox()" aria-label="Cerrar">&times;</span>
-        <button class="lightbox-arrow prev" onclick="changeLightboxSlide(-1)" aria-label="Anterior">&#10094;</button>
-        <img class="lightbox-content" id="lightbox-img" alt="Imagen ampliada" onclick="event.stopPropagation()">
-        <button class="lightbox-arrow next" onclick="changeLightboxSlide(1)" aria-label="Siguiente">&#10095;</button>
-        <div class="lightbox-counter"><span id="lightbox-current">1</span> / 18</div>
+    <div class="lightbox fixed inset-0 z-[1000] bg-black/95 items-center justify-center flex-col" id="lightbox">
+        <button
+            onclick="closeLightbox()"
+            aria-label="Cerrar"
+            class="absolute top-4 right-4 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white text-2xl flex items-center justify-center transition-all duration-300 hover:scale-110">
+            &times;
+        </button>
+        <button
+            onclick="changeLightboxSlide(-1)"
+            aria-label="Anterior"
+            class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/10 hover:bg-white/20 text-white text-2xl flex items-center justify-center transition-all duration-300 hover:scale-110">
+            &#10094;
+        </button>
+        <img class="max-w-[90%] max-h-[80%] rounded-lg shadow-2xl object-contain" id="lightbox-img" alt="Imagen ampliada" onclick="event.stopPropagation()">
+        <button
+            onclick="changeLightboxSlide(1)"
+            aria-label="Siguiente"
+            class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/10 hover:bg-white/20 text-white text-2xl flex items-center justify-center transition-all duration-300 hover:scale-110">
+            &#10095;
+        </button>
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-black/50 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium">
+            <span id="lightbox-current">1</span> / 18
+        </div>
     </div>
 
     <script>
-        // Image array for gallery and carousel
+        // Image array for gallery
         const propertyImages = [
             'image1.jpeg', 'image2.jpeg', 'image3.jpeg', 'image4.jpeg',
             'image5.jpeg', 'image6.jpeg', 'image7.jpeg', 'image8.jpeg',
@@ -1126,17 +422,18 @@
 
         function toggleVideoPlayPause() {
             const video = document.getElementById('hero-video-player');
+            const icon = document.getElementById('video-icon');
             const btn = document.getElementById('video-play-pause-btn');
 
             if (video.paused) {
                 video.play();
                 videoPlaying = true;
-                btn.textContent = '⏸️';
+                icon.textContent = '⏸️';
                 btn.setAttribute('aria-label', 'Pausar video');
             } else {
                 video.pause();
                 videoPlaying = false;
-                btn.textContent = '▶️';
+                icon.textContent = '▶️';
                 btn.setAttribute('aria-label', 'Reproducir video');
             }
         }
@@ -1148,8 +445,8 @@
         let visibleItems = 1;
 
         function getVisibleItems() {
-            if (window.innerWidth >= 992) return 3;
-            if (window.innerWidth >= 641) return 2;
+            if (window.innerWidth >= 1024) return 3;
+            if (window.innerWidth >= 640) return 2;
             return 1;
         }
 
@@ -1163,7 +460,6 @@
             }
             updateGalleryPosition();
             updateGalleryDots();
-            // Reset auto-rotate timer if playing
             if (galleryPlaying) {
                 startGalleryRotate();
             }
@@ -1171,33 +467,26 @@
 
         function initGallery() {
             const track = document.getElementById('gallery-track');
-            const dotsContainer = document.getElementById('gallery-dots');
 
-            // Create gallery items
             propertyImages.forEach((image, index) => {
                 const item = document.createElement('div');
-                item.className = 'gallery-item';
+                item.className = 'flex-shrink-0 w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.667rem)] aspect-[4/3] rounded-xl sm:rounded-2xl overflow-hidden cursor-pointer bg-slate-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]';
                 item.onclick = () => openLightbox(index);
 
                 const img = document.createElement('img');
                 img.src = image;
                 img.alt = `Foto ${index + 1} del departamento en Villa Ballester`;
                 img.loading = 'lazy';
+                img.className = 'w-full h-full object-cover transition-transform duration-500 hover:scale-110';
 
                 item.appendChild(img);
                 track.appendChild(item);
             });
 
-            // Set initial visible items count
             visibleItems = getVisibleItems();
-
-            // Create gallery dots
             createGalleryDots();
-
-            // Start auto-rotate
             startGalleryRotate();
 
-            // Update on resize
             window.addEventListener('resize', () => {
                 const newVisibleItems = getVisibleItems();
                 if (newVisibleItems !== visibleItems) {
@@ -1218,7 +507,7 @@
 
             for (let i = 0; i < totalDots; i++) {
                 const dot = document.createElement('button');
-                dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
+                dot.className = `w-2 h-2 rounded-full transition-all duration-300 ${i === 0 ? 'w-6 bg-slate-800' : 'bg-slate-300 hover:bg-slate-400'}`;
                 dot.onclick = () => goToGallerySlide(i * visibleItems);
                 dot.setAttribute('aria-label', `Ir a grupo ${i + 1}`);
                 dotsContainer.appendChild(dot);
@@ -1236,19 +525,22 @@
         }
 
         function updateGalleryDots() {
-            const dots = document.querySelectorAll('.gallery-dot');
+            const dots = document.querySelectorAll('#gallery-dots button');
             const activeDotIndex = Math.floor(galleryIndex / visibleItems);
             dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === activeDotIndex);
+                if (index === activeDotIndex) {
+                    dot.className = 'w-6 h-2 rounded-full bg-slate-800 transition-all duration-300';
+                } else {
+                    dot.className = 'w-2 h-2 rounded-full bg-slate-300 hover:bg-slate-400 transition-all duration-300';
+                }
             });
         }
 
         function updateGalleryPosition() {
             const track = document.getElementById('gallery-track');
             const itemWidth = 100 / visibleItems;
-            // No gap adjustment on mobile (single image), use gap for tablet/desktop
-            const isMobile = window.innerWidth <= 640;
-            const gapAdjust = (visibleItems > 1 && !isMobile) ? (1.5 / visibleItems) : 0;
+            const isMobile = window.innerWidth < 640;
+            const gapAdjust = isMobile ? 0 : (visibleItems > 1 ? (1 / visibleItems) : 0);
             const offset = galleryIndex * (itemWidth + gapAdjust);
             track.style.transform = `translateX(-${offset}%)`;
         }
@@ -1264,7 +556,7 @@
 
         function startGalleryRotate() {
             stopGalleryRotate();
-            galleryInterval = setInterval(advanceGallery, 3000);
+            galleryInterval = setInterval(advanceGallery, 4000);
             galleryPlaying = true;
             updateGalleryPlayPauseButton();
         }
@@ -1287,19 +579,19 @@
         }
 
         function updateGalleryPlayPauseButton() {
+            const icon = document.getElementById('gallery-icon');
             const btn = document.getElementById('gallery-play-pause-btn');
-            if (btn) {
-                btn.textContent = galleryPlaying ? '⏸️' : '▶️';
+            if (icon && btn) {
+                icon.textContent = galleryPlaying ? '⏸️' : '▶️';
                 btn.setAttribute('aria-label', galleryPlaying ? 'Pausar galería' : 'Reproducir galería');
             }
         }
 
-        // Initialize when DOM is ready
+        // Initialize gallery
         document.addEventListener('DOMContentLoaded', () => {
             initGallery();
         });
 
-        // Lightbox functionality
         // Lightbox functionality
         let lightboxIndex = 0;
 
@@ -1327,39 +619,21 @@
             document.getElementById('lightbox-current').textContent = lightboxIndex + 1;
         }
 
-        // Click outside image to close lightbox
+        // Close lightbox on background click
         document.getElementById('lightbox').addEventListener('click', (e) => {
             if (e.target.id === 'lightbox') {
                 closeLightbox();
             }
         });
 
-        // Keyboard navigation for lightbox
+        // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             const lightbox = document.getElementById('lightbox');
             if (!lightbox.classList.contains('active')) return;
 
-            if (e.key === 'Escape') {
-                closeLightbox();
-            } else if (e.key === 'ArrowLeft') {
-                changeLightboxSlide(-1);
-            } else if (e.key === 'ArrowRight') {
-                changeLightboxSlide(1);
-            }
-        });
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
+            if (e.key === 'Escape') closeLightbox();
+            else if (e.key === 'ArrowLeft') changeLightboxSlide(-1);
+            else if (e.key === 'ArrowRight') changeLightboxSlide(1);
         });
     </script>
 </body>
